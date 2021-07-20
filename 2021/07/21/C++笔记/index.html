@@ -20,25 +20,34 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qingrenn.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="The palest ink is better than the best memory.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Qingren&#39;s Blog">
-<meta property="og:url" content="https://qingrenn.github.io/index.html">
+<meta name="description" content="C++基础1 指针1.1空指针和野指针空指针：指针变量指向内存中编号为0的空间的 用途：初始化指针变量 注意：空指针指向的内存是不可以访问的 12345int main()&amp;#123;    int *p &#x3D; null;&#x2F;&#x2F;空指针    *p &#x3D; 100;    &#x2F;&#x2F;会引发异常，0~255之间内存空间为系统内存占用，不允许访问&amp;#125;  野指针:指针指向非法的内存空间 12345int mai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++笔记">
+<meta property="og:url" content="https://qingrenn.github.io/2021/07/21/C++%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Qingren&#39;s Blog">
-<meta property="og:description" content="The palest ink is better than the best memory.">
+<meta property="og:description" content="C++基础1 指针1.1空指针和野指针空指针：指针变量指向内存中编号为0的空间的 用途：初始化指针变量 注意：空指针指向的内存是不可以访问的 12345int main()&amp;#123;    int *p &#x3D; null;&#x2F;&#x2F;空指针    *p &#x3D; 100;    &#x2F;&#x2F;会引发异常，0~255之间内存空间为系统内存占用，不允许访问&amp;#125;  野指针:指针指向非法的内存空间 12345int mai">
 <meta property="og:locale">
+<meta property="og:image" content="c:/Users/93963/AppData/Roaming/Typora/typora-user-images/image-20200912090643041.png">
+<meta property="og:image" content="c:/Users/93963/AppData/Roaming/Typora/typora-user-images/image-20200912090759537.png">
+<meta property="og:image" content="c:/Users/93963/AppData/Roaming/Typora/typora-user-images/image-20200915162841352.png">
+<meta property="og:image" content="c:/Users/93963/AppData/Roaming/Typora/typora-user-images/image-20201001174515725.png">
+<meta property="og:image" content="c:/Users/93963/AppData/Roaming/Typora/typora-user-images/image-20201001174515725.png">
+<meta property="article:published_time" content="2021-07-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-20T18:13:56.982Z">
 <meta property="article:author" content="Qingren">
+<meta property="article:tag" content="完结">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/93963/AppData/Roaming/Typora/typora-user-images/image-20200912090643041.png">
 
 
-<link rel="canonical" href="https://qingrenn.github.io/">
+<link rel="canonical" href="https://qingrenn.github.io/2021/07/21/C++%E7%AC%94%E8%AE%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-Hans","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://qingrenn.github.io/2021/07/21/C++%E7%AC%94%E8%AE%B0/","path":"2021/07/21/C++笔记/","title":"C++笔记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Qingren's Blog</title>
+<title>C++笔记 | Qingren's Blog</title>
   
 
 
@@ -104,7 +113,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -117,6 +126,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">C++基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%8C%87%E9%92%88"><span class="nav-number">1.1.</span> <span class="nav-text">1 指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E7%A9%BA%E6%8C%87%E9%92%88%E5%92%8C%E9%87%8E%E6%8C%87%E9%92%88"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1空指针和野指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-const%E4%BF%AE%E9%A5%B0%E6%8C%87%E9%92%88"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 const修饰指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E6%8C%87%E9%92%88%E5%92%8C%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3指针和数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4%E6%8C%87%E9%92%88%E5%92%8C%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4指针和函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5冒泡排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">1.2.</span> <span class="nav-text">2 结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1结构体的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2结构体定义和使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3结构体数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4结构体指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5%E7%BB%93%E6%9E%84%E4%BD%93%E5%B5%8C%E5%A5%97%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5结构体嵌套结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6%E7%BB%93%E6%9E%84%E4%BD%93%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6结构体作为函数参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%ADconst%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.7.</span> <span class="nav-text">2.7结构体中const的使用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E6%A0%B8%E5%BF%83"><span class="nav-number">2.</span> <span class="nav-text">C++核心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%86%85%E5%AD%98%E5%88%86%E5%8C%BA%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">1 内存分区模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-new%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 new操作符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%BC%95%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">2 引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E5%BC%95%E7%94%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1引用的基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E5%BC%95%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2引用注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3%E5%BC%95%E7%94%A8%E4%BD%9C%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3引用作函数参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4%E5%BC%95%E7%94%A8%E4%BD%9C%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.4引用作函数的返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5%E5%BC%95%E7%94%A8%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">2.2.5.</span> <span class="nav-text">2.5引用的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6%E5%B8%B8%E9%87%8F%E5%BC%95%E7%94%A8"><span class="nav-number">2.2.6.</span> <span class="nav-text">2.6常量引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%87%BD%E6%95%B0%E7%9A%84%E6%8F%90%E9%AB%98"><span class="nav-number">2.3.</span> <span class="nav-text">3 函数的提高</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1%E5%BD%A2%E5%8F%82%E7%9A%84%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1形参的默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2%E5%87%BD%E6%95%B0%E5%8D%A0%E4%BD%8D%E5%8F%82%E6%95%B0"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2函数占位参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3%E5%87%BD%E6%95%B0%E7%9A%84%E9%87%8D%E8%BD%BD"><span class="nav-number">2.3.3.</span> <span class="nav-text">3.3函数的重载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E6%A6%82%E8%BF%B0"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">3.3.1函数重载概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">3.3.2函数重载的注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.4.</span> <span class="nav-text">4 类和对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E5%B0%81%E8%A3%85"><span class="nav-number">2.4.1.</span> <span class="nav-text">4.1封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1%E5%B0%81%E8%A3%85%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">4.1.1封装的意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-2struct%E5%92%8Cclass%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">4.1.2struct和class的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-3%E6%88%90%E5%91%98%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E4%B8%BA%E7%A7%81%E6%9C%89"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">4.1.3成员属性设置为私有</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E6%B8%85%E7%90%86"><span class="nav-number">2.4.2.</span> <span class="nav-text">4.2对象的初始化和清理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-1%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">4.2.1构造函数和析构函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E8%B0%83%E7%94%A8"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">4.2.2构造函数的分类及调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-3%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%BA"><span class="nav-number">2.4.2.3.</span> <span class="nav-text">4.2.3拷贝构造函数调用时机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-4%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%A7%84%E5%88%99"><span class="nav-number">2.4.2.4.</span> <span class="nav-text">4.2.4构造函数调用规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-5%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-number">2.4.2.5.</span> <span class="nav-text">4.2.5深拷贝与浅拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-6%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8"><span class="nav-number">2.4.2.6.</span> <span class="nav-text">4.2.6初始化列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-7%E7%B1%BB%E5%AF%B9%E8%B1%A1%E4%BD%9C%E4%B8%BA%E7%B1%BB%E6%88%90%E5%91%98"><span class="nav-number">2.4.2.7.</span> <span class="nav-text">4.2.7类对象作为类成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-8%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="nav-number">2.4.2.8.</span> <span class="nav-text">4.2.8静态成员</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-C-%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88"><span class="nav-number">2.4.3.</span> <span class="nav-text">4.3 C++对象模型和this指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%88%86%E5%BC%80%E5%82%A8%E5%AD%98"><span class="nav-number">2.4.3.1.</span> <span class="nav-text">4.3.1成员变量和成员函数分开储存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2this%E6%8C%87%E9%92%88%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.4.3.2.</span> <span class="nav-text">4.3.2this指针的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3%E7%A9%BA%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">2.4.3.3.</span> <span class="nav-text">4.3.3空指针访问成员函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-4const%E4%BF%AE%E9%A5%B0%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">2.4.3.4.</span> <span class="nav-text">4.3.4const修饰成员函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4%E5%8F%8B%E5%85%83"><span class="nav-number">2.4.4.</span> <span class="nav-text">4.4友元</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-1%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E4%BD%9C%E5%8F%8B%E5%85%83"><span class="nav-number">2.4.4.1.</span> <span class="nav-text">4.4.1全局函数作友元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-2%E7%B1%BB%E5%81%9A%E5%8F%8B%E5%85%83"><span class="nav-number">2.4.4.2.</span> <span class="nav-text">4.4.2类做友元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-3%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%81%9A%E5%8F%8B%E5%85%83"><span class="nav-number">2.4.4.3.</span> <span class="nav-text">4.4.3成员函数做友元</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">2.4.5.</span> <span class="nav-text">4.5运算符重载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-1%E5%8A%A0%E5%8F%B7%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">2.4.5.1.</span> <span class="nav-text">4.5.1加号运算符重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-2%E5%B7%A6%E7%A7%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">2.4.5.2.</span> <span class="nav-text">4.5.2左移运算符重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-3%E9%80%92%E5%A2%9E%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">2.4.5.3.</span> <span class="nav-text">4.5.3递增运算符重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-4%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">2.4.5.4.</span> <span class="nav-text">4.5.4赋值运算符重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-5%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">2.4.5.5.</span> <span class="nav-text">4.5.5关系运算符重载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-6%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">2.4.5.6.</span> <span class="nav-text">4.5.6函数调用运算符重载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6%E7%BB%A7%E6%89%BF"><span class="nav-number">2.4.6.</span> <span class="nav-text">4.6继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-1%E7%BB%A7%E6%89%BF%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">2.4.6.1.</span> <span class="nav-text">4.6.1继承的基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-2%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.6.2.</span> <span class="nav-text">4.6.2继承方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-3%E9%9B%86%E6%88%90%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.4.6.3.</span> <span class="nav-text">4.6.3集成中的对象模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-4%E9%9B%86%E6%88%90%E4%B8%AD%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.4.6.4.</span> <span class="nav-text">4.6.4集成中的构造和析构顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-5%E7%BB%A7%E6%89%BF%E5%90%8C%E5%90%8D%E5%87%BD%E6%95%B0%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.6.5.</span> <span class="nav-text">4.6.5继承同名函数处理方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-6%E7%BB%A7%E6%89%BF%E5%90%8C%E5%90%8D%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.6.6.</span> <span class="nav-text">4.6.6继承同名静态成员处理方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-7%E5%A4%9A%E7%BB%A7%E6%89%BF%E8%AF%AD%E6%B3%95"><span class="nav-number">2.4.6.7.</span> <span class="nav-text">4.6.7多继承语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-8%E8%8F%B1%E5%BD%A2%E7%BB%A7%E6%89%BF"><span class="nav-number">2.4.6.8.</span> <span class="nav-text">4.6.8菱形继承</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7%E5%A4%9A%E6%80%81"><span class="nav-number">2.4.7.</span> <span class="nav-text">4.7多态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-1%E5%A4%9A%E6%80%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.4.7.1.</span> <span class="nav-text">4.7.1多态的基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-2%E5%A4%9A%E6%80%81%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="nav-number">2.4.7.2.</span> <span class="nav-text">4.7.2多态的底层原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-3%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-number">2.4.7.3.</span> <span class="nav-text">4.7.3纯虚函数和抽象类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-4%E8%99%9A%E6%9E%90%E6%9E%84%E5%92%8C%E7%BA%AF%E8%99%9A%E6%9E%90%E6%9E%84"><span class="nav-number">2.4.7.4.</span> <span class="nav-text">4.7.4虚析构和纯虚析构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">2.5.</span> <span class="nav-text">5 文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.1.</span> <span class="nav-text">5.1文本文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1%E5%86%99%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">5.1.1写文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2%E8%AF%BB%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">5.1.2读文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.2.</span> <span class="nav-text">5.2二进制文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-1%E5%86%99%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">5.2.1写文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-2%E8%AF%BB%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.2.2.</span> <span class="nav-text">5.2.2读文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B"><span class="nav-number">2.6.</span> <span class="nav-text">C++提高编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.7.</span> <span class="nav-text">1模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E6%A8%A1%E6%9D%BF%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.7.1.</span> <span class="nav-text">1.1模板的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.7.2.</span> <span class="nav-text">1.2函数模板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95"><span class="nav-number">2.7.2.1.</span> <span class="nav-text">1.2.1函数模板语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.7.2.2.</span> <span class="nav-text">1.2.2函数模板注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E6%A1%88%E4%BE%8B"><span class="nav-number">2.7.2.3.</span> <span class="nav-text">1.2.3函数模板案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E4%B8%8E%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.7.2.4.</span> <span class="nav-text">1.2.4普通函数与函数模板的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E4%B8%8E%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E7%9A%84%E8%B0%83%E7%94%A8%E8%A7%84%E5%88%99"><span class="nav-number">2.7.2.5.</span> <span class="nav-text">1.2.5普通函数与函数模板的调用规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-6%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">2.7.2.6.</span> <span class="nav-text">1.2.6模板的局限性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E7%B1%BB%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.7.3.</span> <span class="nav-text">1.3类模板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1%E7%B1%BB%E6%A8%A1%E6%9D%BF%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">2.7.3.1.</span> <span class="nav-text">1.3.1类模板基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2%E7%B1%BB%E6%A8%A1%E6%9D%BF%E4%B8%8E%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E5%8C%BA%E5%88%AB"><span class="nav-number">2.7.3.2.</span> <span class="nav-text">1.3.2类模板与函数模板区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3%E7%B1%BB%E6%A8%A1%E6%9D%BF%E4%B8%AD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E6%97%B6%E6%9C%BA"><span class="nav-number">2.7.3.3.</span> <span class="nav-text">1.3.3类模板中成员函数创建时机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-4%E7%B1%BB%E6%A8%A1%E6%9D%BF%E5%AF%B9%E8%B1%A1%E5%81%9A%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="nav-number">2.7.3.4.</span> <span class="nav-text">1.3.4类模板对象做函数参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-5%E7%B1%BB%E6%A8%A1%E6%9D%BF%E4%B8%8E%E7%BB%A7%E6%89%BF"><span class="nav-number">2.7.3.5.</span> <span class="nav-text">1.3.5类模板与继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-6%E7%B1%BB%E6%A8%A1%E6%9D%BF%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E7%B1%BB%E5%A4%96%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.7.3.6.</span> <span class="nav-text">1.3.6类模板成员函数类外实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-7%E7%B1%BB%E6%A8%A1%E6%9D%BF%E5%88%86%E6%96%87%E4%BB%B6%E7%BC%96%E5%86%99"><span class="nav-number">2.7.3.7.</span> <span class="nav-text">1.3.7类模板分文件编写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-8%E7%B1%BB%E6%A8%A1%E6%9D%BF%E4%B8%8E%E5%8F%8B%E5%85%83"><span class="nav-number">2.7.3.8.</span> <span class="nav-text">1.3.8类模板与友元</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-STL"><span class="nav-number">2.8.</span> <span class="nav-text">2 STL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1STL%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.8.1.</span> <span class="nav-text">2.1STL基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2STL%E5%85%AD%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="nav-number">2.8.2.</span> <span class="nav-text">2.2STL六大组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-STL%E4%B8%AD%E5%AE%B9%E5%99%A8%E3%80%81%E7%AE%97%E6%B3%95%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="nav-number">2.8.3.</span> <span class="nav-text">2.3 STL中容器、算法、迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4%E5%AE%B9%E5%99%A8%E7%AE%97%E6%B3%95%E5%8F%A0%E5%8A%A0%E5%99%A8%E5%88%9D%E8%AF%86"><span class="nav-number">2.8.4.</span> <span class="nav-text">2.4容器算法叠加器初识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-Vector%E5%AD%98%E6%94%BE%E5%86%85%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.8.4.1.</span> <span class="nav-text">2.4.1 Vector存放内置数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-Vector%E5%AD%98%E6%94%BE%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.8.4.2.</span> <span class="nav-text">2.4.2 Vector存放自定义数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3Vector%E5%AE%B9%E5%99%A8%E5%B5%8C%E5%A5%97%E5%AE%B9%E5%99%A8"><span class="nav-number">2.8.4.3.</span> <span class="nav-text">2.4.3Vector容器嵌套容器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-STL%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8"><span class="nav-number">2.8.5.</span> <span class="nav-text">3 STL常用容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1string"><span class="nav-number">2.8.6.</span> <span class="nav-text">3.1string</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1string%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.8.6.1.</span> <span class="nav-text">3.1.1string基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2string%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">2.8.6.2.</span> <span class="nav-text">3.1.2string构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3string%E7%9A%84%E8%B5%8B%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.8.6.3.</span> <span class="nav-text">3.1.3string的赋值操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-4string%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="nav-number">2.8.6.4.</span> <span class="nav-text">3.1.4string字符串拼接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-5%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9F%A5%E6%89%BE%E5%92%8C%E6%9B%BF%E6%8D%A2"><span class="nav-number">2.8.6.5.</span> <span class="nav-text">3.1.5字符串查找和替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-6%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">2.8.6.6.</span> <span class="nav-text">3.1.6字符串的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-7-string%E5%AD%97%E7%AC%A6%E5%AD%98%E5%8F%96"><span class="nav-number">2.8.6.7.</span> <span class="nav-text">3.1.7 string字符存取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-8-string%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-number">2.8.6.8.</span> <span class="nav-text">3.1.8 string插入和删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-9-string%E5%AD%90%E4%B8%B2"><span class="nav-number">2.8.6.9.</span> <span class="nav-text">3.1.9 string子串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-vector%E5%AE%B9%E5%99%A8"><span class="nav-number">2.8.7.</span> <span class="nav-text">3.2 vector容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-vector%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.8.7.1.</span> <span class="nav-text">3.2.1 vector基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-vector%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">2.8.7.2.</span> <span class="nav-text">3.2.2 vector构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-vector%E8%B5%8B%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.8.7.3.</span> <span class="nav-text">3.2.3 vector赋值操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-vector%E5%AE%B9%E9%87%8F%E5%92%8C%E5%A4%A7%E5%B0%8F"><span class="nav-number">2.8.7.4.</span> <span class="nav-text">3.2.4 vector容量和大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-5-vector%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-number">2.8.7.5.</span> <span class="nav-text">3.2.5 vector插入和删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-6-vector%E6%95%B0%E6%8D%AE%E5%AD%98%E5%8F%96"><span class="nav-number">2.8.7.6.</span> <span class="nav-text">3.2.6 vector数据存取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-7-vector%E4%BA%92%E6%8D%A2%E5%AE%B9%E5%99%A8"><span class="nav-number">2.8.7.7.</span> <span class="nav-text">3.2.7 vector互换容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-8-vector%E9%A2%84%E7%95%99%E7%A9%BA%E9%97%B4"><span class="nav-number">2.8.7.8.</span> <span class="nav-text">3.2.8 vector预留空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-deque%E5%AE%B9%E5%99%A8"><span class="nav-number">2.8.8.</span> <span class="nav-text">3.3 deque容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-deque%E5%AE%B9%E5%99%A8%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.8.8.1.</span> <span class="nav-text">3.3.1 deque容器基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-deque%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">2.8.8.2.</span> <span class="nav-text">3.3.2 deque构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-deque%E8%B5%8B%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.8.8.3.</span> <span class="nav-text">3.3.3 deque赋值操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-deque%E5%A4%A7%E5%B0%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">2.8.8.4.</span> <span class="nav-text">3.3.4 deque大小操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-5-deque%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-number">2.8.8.5.</span> <span class="nav-text">3.3.5 deque插入和删除</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-new%E5%87%BA%E6%9D%A5%E7%9A%84%E6%98%AF%E6%8C%87%E9%92%88"><span class="nav-number">3.1.</span> <span class="nav-text">1 new出来的是指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%B9%E5%99%A8%E5%AF%B9%E8%B1%A1-end-%E6%8C%87%E9%92%88"><span class="nav-number">3.2.</span> <span class="nav-text">2 容器对象.end()指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-explicit-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">3.3.</span> <span class="nav-text">3 explicit 关键字</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -183,16 +193,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/07/21/C++%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -205,9 +216,9 @@
       <meta itemprop="name" content="Qingren's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/21/C++%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">C++笔记</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          C++笔记
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -240,7 +251,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="C-基础"><a href="#C-基础" class="headerlink" title="C++基础"></a>C++基础</h1><h2 id="1-指针"><a href="#1-指针" class="headerlink" title="1 指针"></a>1 指针</h2><h3 id="1-1空指针和野指针"><a href="#1-1空指针和野指针" class="headerlink" title="1.1空指针和野指针"></a>1.1空指针和野指针</h3><p><strong>空指针</strong>：指针变量指向内存中编号为0的空间的</p>
+        <h1 id="C-基础"><a href="#C-基础" class="headerlink" title="C++基础"></a>C++基础</h1><h2 id="1-指针"><a href="#1-指针" class="headerlink" title="1 指针"></a>1 指针</h2><h3 id="1-1空指针和野指针"><a href="#1-1空指针和野指针" class="headerlink" title="1.1空指针和野指针"></a>1.1空指针和野指针</h3><p><strong>空指针</strong>：指针变量指向内存中编号为0的空间的</p>
 <p>用途：初始化指针变量</p>
 <p>注意：空指针指向的内存是不可以访问的</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = null;<span class="comment">//空指针</span></span><br><span class="line">    *p = <span class="number">100</span>;</span><br><span class="line">    <span class="comment">//会引发异常，0~255之间内存空间为系统内存占用，不允许访问</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1126,7 +1137,6 @@
 
 
 
-      
     </div>
 
     
@@ -1134,87 +1144,25 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%8C%E7%BB%93/" rel="tag"># 完结</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/20/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/07/20/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/Qingrenn/FigureBed/blob/master/avatar.gif?raw=true">
-      <meta itemprop="name" content="Qingren">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qingren's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/20/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-07-20 20:30:39" itemprop="dateCreated datePublished" datetime="2021-07-20T20:30:39+08:00">2021-07-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
