@@ -20,15 +20,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qingrenn.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="PCA原理PCA算法步骤 首先求样本数据各维度的协方差； 然后对这个协方差矩阵进行奇异值分解（SVD），通过SVD可以得到这个协方差矩阵的特征值对角矩阵和对应的特征向量矩阵； 最后根据特征值的大小，从n个特征值中选取前k个较大特征值所对应的k个特征向量构成特征向量矩阵（转移矩阵P(n*k)），将样本数据（A(n,1)）转换到新的空间下（$A’ &#x3D; P^{T}A$）。  这样就实现了对数据的降维。">
+<meta name="description" content="MathJax.Hub.Config({             tex2jax: {             skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;],             inlineMath: [[&#39;$&#39;,&#39;$&#39;]]             }         });">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对于PCA的理解">
 <meta property="og:url" content="https://qingrenn.github.io/2021/07/21/PCA/index.html">
 <meta property="og:site_name" content="Qingren&#39;s Blog">
-<meta property="og:description" content="PCA原理PCA算法步骤 首先求样本数据各维度的协方差； 然后对这个协方差矩阵进行奇异值分解（SVD），通过SVD可以得到这个协方差矩阵的特征值对角矩阵和对应的特征向量矩阵； 最后根据特征值的大小，从n个特征值中选取前k个较大特征值所对应的k个特征向量构成特征向量矩阵（转移矩阵P(n*k)），将样本数据（A(n,1)）转换到新的空间下（$A’ &#x3D; P^{T}A$）。  这样就实现了对数据的降维。">
+<meta property="og:description" content="MathJax.Hub.Config({             tex2jax: {             skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;],             inlineMath: [[&#39;$&#39;,&#39;$&#39;]]             }         });">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-07-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-21T04:07:14.003Z">
+<meta property="article:modified_time" content="2021-07-21T04:16:28.698Z">
 <meta property="article:author" content="Qingren">
 <meta property="article:tag" content="完结">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-07-21 00:00:00 / Modified: 12:07:14" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
+      <time title="Created: 2021-07-21 00:00:00 / Modified: 12:16:28" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -245,7 +245,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="PCA原理"><a href="#PCA原理" class="headerlink" title="PCA原理"></a>PCA原理</h1><h2 id="PCA算法步骤"><a href="#PCA算法步骤" class="headerlink" title="PCA算法步骤"></a>PCA算法步骤</h2><ol>
+        <head>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+
+<h1 id="PCA原理"><a href="#PCA原理" class="headerlink" title="PCA原理"></a>PCA原理</h1><h2 id="PCA算法步骤"><a href="#PCA算法步骤" class="headerlink" title="PCA算法步骤"></a>PCA算法步骤</h2><ol>
 <li>首先求样本数据各维度的协方差；</li>
 <li>然后对这个协方差矩阵进行奇异值分解（SVD），通过SVD可以得到这个协方差矩阵的特征值对角矩阵和对应的特征向量矩阵；</li>
 <li>最后根据特征值的大小，从n个特征值中选取前k个较大特征值所对应的k个特征向量构成特征向量矩阵（转移矩阵P(n*k)），将样本数据（A(n,1)）转换到新的空间下（$A’ = P^{T}A$）。</li>

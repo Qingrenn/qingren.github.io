@@ -347,7 +347,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-07-21 00:00:00 / Modified: 12:07:14" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
+      <time title="Created: 2021-07-21 00:00:00 / Modified: 12:16:28" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -369,7 +369,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="PCA原理"><a href="#PCA原理" class="headerlink" title="PCA原理"></a>PCA原理</h1><h2 id="PCA算法步骤"><a href="#PCA算法步骤" class="headerlink" title="PCA算法步骤"></a>PCA算法步骤</h2><ol>
+          <head>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+
+<h1 id="PCA原理"><a href="#PCA原理" class="headerlink" title="PCA原理"></a>PCA原理</h1><h2 id="PCA算法步骤"><a href="#PCA算法步骤" class="headerlink" title="PCA算法步骤"></a>PCA算法步骤</h2><ol>
 <li>首先求样本数据各维度的协方差；</li>
 <li>然后对这个协方差矩阵进行奇异值分解（SVD），通过SVD可以得到这个协方差矩阵的特征值对角矩阵和对应的特征向量矩阵；</li>
 <li>最后根据特征值的大小，从n个特征值中选取前k个较大特征值所对应的k个特征向量构成特征向量矩阵（转移矩阵P(n*k)），将样本数据（A(n,1)）转换到新的空间下（$A’ = P^{T}A$）。</li>
