@@ -17,10 +17,10 @@
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #f0f0f0;
-  --highlight-foreground: #444;
-  --highlight-gutter-background: #dedede;
-  --highlight-gutter-foreground: #555;
+  --highlight-background: #fff;
+  --highlight-foreground: #000;
+  --highlight-gutter-background: #e5e5e5;
+  --highlight-gutter-foreground: #191919;
 }
 html {
   line-height: 1.15; /* 1 */
@@ -361,7 +361,7 @@ td {
 }
 /*
 
-Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
+Google Code style (c) Aahan Krish <geekpanth3r@gmail.com>
 
 */
 
@@ -369,96 +369,106 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #F0F0F0;
+  background: white;
+  color: black;
 }
 
-
-/* Base color: saturation 0; */
-
-.hljs,
-.hljs-subst {
-  color: #444;
-}
-
-.hljs-comment {
-  color: #888888;
+.hljs-comment,
+.hljs-quote {
+  color: #800;
 }
 
 .hljs-keyword,
-.hljs-attribute,
 .hljs-selector-tag,
-.hljs-meta-keyword,
-.hljs-doctag,
+.hljs-section,
+.hljs-title,
 .hljs-name {
-  font-weight: bold;
+  color: #008;
 }
 
+.hljs-variable,
+.hljs-template-variable {
+  color: #660;
+}
 
-/* User color: hue: 0 */
-
-.hljs-type,
 .hljs-string,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-regexp {
+  color: #080;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-meta,
 .hljs-number,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-quote,
-.hljs-template-tag,
-.hljs-deletion {
-  color: #880000;
+.hljs-link {
+  color: #066;
 }
 
 .hljs-title,
-.hljs-section {
-  color: #880000;
+.hljs-doctag,
+.hljs-type,
+.hljs-attr,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-params {
+  color: #606;
+}
+
+.hljs-attribute,
+.hljs-subst {
+  color: #000;
+}
+
+.hljs-formula {
+  background-color: #eee;
+  font-style: italic;
+}
+
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #9B703F
+}
+
+.hljs-addition {
+  background-color: #baeeba;
+}
+
+.hljs-deletion {
+  background-color: #ffc8bd;
+}
+
+.hljs-doctag,
+.hljs-strong {
   font-weight: bold;
 }
-
-.hljs-regexp,
-.hljs-symbol,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-link,
-.hljs-selector-attr,
-.hljs-selector-pseudo {
-  color: #BC6060;
-}
-
-
-/* Language color: hue: 90; */
-
-.hljs-literal {
-  color: #78A960;
-}
-
-.hljs-built_in,
-.hljs-bullet,
-.hljs-code,
-.hljs-addition {
-  color: #397300;
-}
-
-
-/* Meta color: hue: 200 */
-
-.hljs-meta {
-  color: #1f7199;
-}
-
-.hljs-meta-string {
-  color: #4d99bf;
-}
-
-
-/* Misc effects */
 
 .hljs-emphasis {
   font-style: italic;
 }
 
-.hljs-strong {
-  font-weight: bold;
+.highlight:hover .copy-btn,
+pre:hover .copy-btn {
+  opacity: 1;
 }
-
+.copy-btn {
+  color: #333;
+  cursor: pointer;
+  line-height: 1.6;
+  opacity: 0;
+  padding: 2px 6px;
+  position: absolute;
+  transition: opacity 0.2s ease-in-out;
+  background-color: #eee;
+  background-image: linear-gradient(#fcfcfc, #eee);
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  font-size: 0.8125em;
+  right: 4px;
+  top: 8px;
+}
 code,
 kbd,
 figure.highlight,
