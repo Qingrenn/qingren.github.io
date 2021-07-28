@@ -20,18 +20,18 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qingrenn.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="高光谱图像处理分析的DL方法 Deep Learning Meets Hyperspectral Image Analysis: A Multidisciplinary Review综述阅读笔记 1. 高光谱图像高光谱图像（Hyperspectral imaging，HSI）目前广泛应用在遥感、生物医药、食品质量监测、农业、文化遗产等领域。 高光谱图像相比于RGB图像和多光谱图像能够传递更多的谱信">
+<meta name="description" content="高光谱图像处理分析的DL方法Deep Learning Meets Hyperspectral Image Analysis: A Multidisciplinary Review综述阅读笔记 1. 高光谱图像高光谱图像（Hyperspectral imaging，HSI）目前广泛应用在遥感、生物医药、食品质量监测、农业、文化遗产等领域。 高光谱图像相比于RGB图像和多光谱图像能够传递更多的谱信息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高光谱图像处理的深度学习方法">
 <meta property="og:url" content="https://qingrenn.github.io/2021/07/27/%E5%B8%B8%E8%A7%84CV%E4%BB%BB%E5%8A%A1%E5%9C%A8%E9%AB%98%E5%85%89%E8%B0%B1%E4%B8%8E%E5%A4%9A%E5%85%89%E8%B0%B1%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%8A%E7%9A%84%E6%98%A0%E5%B0%84/index.html">
 <meta property="og:site_name" content="Qingren&#39;s Blog">
-<meta property="og:description" content="高光谱图像处理分析的DL方法 Deep Learning Meets Hyperspectral Image Analysis: A Multidisciplinary Review综述阅读笔记 1. 高光谱图像高光谱图像（Hyperspectral imaging，HSI）目前广泛应用在遥感、生物医药、食品质量监测、农业、文化遗产等领域。 高光谱图像相比于RGB图像和多光谱图像能够传递更多的谱信">
+<meta property="og:description" content="高光谱图像处理分析的DL方法Deep Learning Meets Hyperspectral Image Analysis: A Multidisciplinary Review综述阅读笔记 1. 高光谱图像高光谱图像（Hyperspectral imaging，HSI）目前广泛应用在遥感、生物医药、食品质量监测、农业、文化遗产等领域。 高光谱图像相比于RGB图像和多光谱图像能够传递更多的谱信息">
 <meta property="og:locale">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/20160719-2.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/20160719-3.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/ERZUIg.png">
 <meta property="article:published_time" content="2021-07-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-27T11:34:13.408Z">
+<meta property="article:modified_time" content="2021-07-28T13:22:27.204Z">
 <meta property="article:author" content="Qingren">
 <meta property="article:tag" content="未完待续">
 <meta name="twitter:card" content="summary">
@@ -225,10 +225,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-07-27 00:00:00 / Modified: 19:34:13" itemprop="dateCreated datePublished" datetime="2021-07-27T00:00:00+08:00">2021-07-27</time>
+      <time title="Created: 2021-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-27T00:00:00+08:00">2021-07-27</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-07-28 21:22:27" itemprop="dateModified" datetime="2021-07-28T21:22:27+08:00">2021-07-28</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -253,10 +259,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="高光谱图像处理分析的DL方法"><a href="#高光谱图像处理分析的DL方法" class="headerlink" title="高光谱图像处理分析的DL方法"></a>高光谱图像处理分析的DL方法</h1><hr>
-<p><a target="_blank" rel="noopener" href="https://www.mdpi.com/2313-433X/5/5/52">Deep Learning Meets Hyperspectral Image Analysis: A Multidisciplinary Review</a>综述阅读笔记</p>
+        <h1 id="高光谱图像处理分析的DL方法"><a href="#高光谱图像处理分析的DL方法" class="headerlink" title="高光谱图像处理分析的DL方法"></a>高光谱图像处理分析的DL方法</h1><p><a target="_blank" rel="noopener" href="https://www.mdpi.com/2313-433X/5/5/52">Deep Learning Meets Hyperspectral Image Analysis: A Multidisciplinary Review</a>综述阅读笔记</p>
 <h2 id="1-高光谱图像"><a href="#1-高光谱图像" class="headerlink" title="1. 高光谱图像"></a>1. 高光谱图像</h2><p>高光谱图像（Hyperspectral imaging，HSI）目前广泛应用在遥感、生物医药、食品质量监测、农业、文化遗产等领域。</p>
-<p>高光谱图像相比于RGB图像和多光谱图像能够传递更多的谱信息：<strong>高光谱图像除了二维空间信息 xy 之外，还能够获取密集采样的光谱信息 λ 。当获取的连续光谱带的数量级为$10^2 \textasciitilde 10^3$时，就可以称得上是高光谱图像。其每个像素实际上是一个高维向量，通常包含来自数百个连续窄带光谱通道（半高全宽，FWHM 介于 2 和 20 nm) 的信息，覆盖一个或多个相对较宽的光谱间隔（通常但不限于 400-2500 nm 波长范围内）</strong>。</p>
+<p>高光谱图像相比于RGB图像和多光谱图像能够传递更多的谱信息：<strong>高光谱图像除了二维空间信息 xy 之外，还能够获取密集采样的光谱信息 λ 。当获取的连续光谱带的数量级为$10^2 \～10^3$时，就可以称得上是高光谱图像。其每个像素实际上是一个高维向量，通常包含来自数百个连续窄带光谱通道（半高全宽，FWHM 介于 2 和 20 nm) 的信息，覆盖一个或多个相对较宽的光谱间隔（通常但不限于 400-2500 nm 波长范围内）</strong>。</p>
 <p>与之相似的概念还有多光谱图像（Mutispectral imaging，MSI），多光谱图像则关注在获得数十个波段（典型的 FWHM 为 100-200 nm）的信息，各个波段不一定是连续/等距的。</p>
 <h3 id="1-1-高光谱图像的采集"><a href="#1-1-高光谱图像的采集" class="headerlink" title="1.1 高光谱图像的采集"></a>1.1 高光谱图像的采集</h3><p>目前卫星传感器主要有两大类型：摆扫式（whisk broom）和推扫式（push broom），摆扫式是通过一个“镜子”来回移动收集从一个像素上测量的值$x_iy_j$​​（图1）。而推扫式也称沿轨道扫描仪， 使用的探测器安置在垂直于航天器的飞行方向，飞行器向前飞行时候，一次可以收集一行的图像$xy_j$​​​​（图2）。对于摆扫模式，时间分辨率会受到很大的影响，特别是在想要获得合适的空间分辨率的情况下，大多数情况下，这样的缺点会影响逐点光谱法在 HSI 采集中的实际使用。图2所示的推扫式被应用得更为广泛，可以获得较高分空间/谱分辨率的图像。</p>
 <p><table>
@@ -284,7 +289,6 @@
 <li>Review:<a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_cvpr_2018_workshops/w13/html/Arad_NTIRE_2018_Challenge_CVPR_2018_paper.html">NTIRE 2018 Challenge on Spectral Reconstruction from RGB Images</a></li>
 </ul>
 <p>除了DL的方法之外，由于光谱重建的质量依赖于相机的颜色光谱灵敏度 (CSS) ，所以有一些方法将 CSS 函数包含在内，以联合学习最佳 CSS 和光谱恢复图 ，或直接从未知的设置中的 RGB 图像生成 CSS 估计，以更好地调节光谱重建 。甚至学习最佳滤波器以构建优化的多光谱相机以用于快照 HSI。（其它方法可以参考Deep Learning Meets Hyperspectral Image Analysis）</p>
-<hr>
 <h2 id="2-遥感中的高光谱图像处理任务"><a href="#2-遥感中的高光谱图像处理任务" class="headerlink" title="2. 遥感中的高光谱图像处理任务"></a>2. 遥感中的高光谱图像处理任务</h2><p>RS中的HSI数据分析的主要任务集中在图像处理（包括校准和辐射校正）、特征提取、分类、目标识别和场景理解。 大多数来自<strong>表征学习</strong>（Representation Learning）的研究和 DL 架构的技术突破已经在 RS 应用中得到了相当快速的测试，应用在这些领域中也十分合适。</p>
 <h3 id="2-1-Classification"><a href="#2-1-Classification" class="headerlink" title="2.1 Classification"></a>2.1 Classification</h3><p>地面类型的分类是 RS 的主要任务之一，其分类目标主要与作物（玉米、草、大豆等）或城市地区（沥青、树木、砖块等）有关。</p>
 <p>由于像素的丰富性和多样性，像数分类可以建立在利用光谱特征的基础上，其中有代表性的工作主要有：</p>
@@ -370,9 +374,8 @@
 </ul>
 </li>
 </ul>
-<hr>
 <h2 id="3-DL方法在高光谱图像中的应用"><a href="#3-DL方法在高光谱图像中的应用" class="headerlink" title="3. DL方法在高光谱图像中的应用"></a>3. DL方法在高光谱图像中的应用</h2><p>从不同的网络结构来考虑。以CNN、Autoencoders、Deep Belief Networks、Generative Adversarial Networks、Recurrent Neural Networks等为索引，分析各种结构的网络在高光谱图像处理中的应用。</p>
-<h3 id="3-1-CNN"><a href="#3-1-CNN" class="headerlink" title="3.1 CNN"></a>3.1 CNN</h3><div class="note default"><p>未完待续 {md partial supported} </p>
+<h3 id="3-1-CNN"><a href="#3-1-CNN" class="headerlink" title="3.1 CNN"></a>3.1 CNN</h3><div class="note default"><p>未完待续 </p>
 </div>
 
     </div>
