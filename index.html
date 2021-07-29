@@ -133,7 +133,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -193,6 +193,113 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/07/29/Deep%20Convolutional%20Neural%20Networks%20for%20Hyperspectral%20Image%20Classification/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://github.com/Qingrenn/FigureBed/blob/master/avatar.gif?raw=true">
+      <meta itemprop="name" content="Qingren">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qingren's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/29/Deep%20Convolutional%20Neural%20Networks%20for%20Hyperspectral%20Image%20Classification/" class="post-title-link" itemprop="url">Deep Convolutional Neural Networks for Hyperspectral Image Classification</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-07-29 00:00:00 / Modified: 23:29:31" itemprop="dateCreated datePublished" datetime="2021-07-29T00:00:00+08:00">2021-07-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ML-DL/" itemprop="url" rel="index"><span itemprop="name">ML&DL</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/HSI/" itemprop="url" rel="index"><span itemprop="name">HSI</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Deep-Convolutional-Neural-Networks-for-Hyperspectral-Image-Classification"><a href="#Deep-Convolutional-Neural-Networks-for-Hyperspectral-Image-Classification" class="headerlink" title="Deep Convolutional Neural Networks for Hyperspectral Image Classification"></a>Deep Convolutional Neural Networks for Hyperspectral Image Classification</h1><p>据本文提及，这是第一份利用CNN来对高光谱图像进行分类的工作，作者在LeNet-5的基础上，对其进行结构调整使之适合HSI的分类任务。</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>在此之前，作者提到的HSI的相关工作主要有以下部分，主要提及的还是CNN在图像处理领域的进展，感觉这个时段DL的方法确实还并未迁移至HSI上。</p>
+<ul>
+<li>SVM：<ul>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/4840429">“Spectral–Spatial Classification of Hyperspectral Imagery Based on Partitional Clustering Techniques,” in IEEE Transactions on Geoscience and Remote Sensing,  2009</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0924271610001140">Support vector machines in remote sensing: A review. 2011 </a></li>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/7018910">Spectral–Spatial Classification of Hyperspectral Data Based on Deep Belief Network. in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing. 2015</a></li>
+</ul>
+</li>
+<li>Semi-supervised：<ul>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/5411821">Semisupervised Neural Networks for Efficient Hyperspectral Image Classificationn IEEE Transactions on Geoscience and Remote Sensing, 2010</a></li>
+</ul>
+</li>
+<li>SAEs：<ul>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/6844831">Deep Learning-Based Classification of Hyperspectral Data. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing. 2014</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="模型介绍"><a href="#模型介绍" class="headerlink" title="模型介绍"></a>模型介绍</h2><center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/D9EQ6C.png"></center>
+
+<p>模型的输入为某一个像素的谱向量长度为$n_1$，经过$20 \times k_1 \times 1$的卷积核，得到C1层的特征图，尺寸为$20 \times n_2 \times 1$。</p>
+<p>其中$n_2 = (n_1 - k_1)/1 + 1$。</p>
+<p>从C1至M2是最大池化操作，池化核为$k_2 \times 1$，得到的M2的特征图尺寸为$20 \times n_3 \times 1$。</p>
+<p>其中$n_3 = n_2/k_2$。</p>
+<p>然后是一层全连接层F3，并再接一层全连接作为输出。</p>
+<p>任务为多分类任务，作者使用的损失函数为交叉熵损 $J(\theta) = -\frac{1}{m} \sum \limits_{i=1}^{m} \sum \limits_{j=1}^{n_5} 1\{j=Y^{(i)}\}\log{(y_j^{(i)})}$。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/nFUEOR.png"></center>
+
+<p>从可视化的结果上来说，分类效果相较SVM并不明显。不过给我感觉到，HSI图像的分类是逐像素进行分类的，区别于我们常规的图像分类。个人认为常规的图像分类是主要是根据整张图像的语义信息进行分类，但是HSI图像的分类任务是在一个像素上进行的，仅仅需要对一个谱向量进行分类。</p>
+<p>作者在文中也有提到，本模型的结构和在语音识别中应用CNN处理频域信号的模型有相似之处，因为处理的数据都是一维的。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/07/27/%E5%B8%B8%E8%A7%84CV%E4%BB%BB%E5%8A%A1%E5%9C%A8%E9%AB%98%E5%85%89%E8%B0%B1%E4%B8%8E%E5%A4%9A%E5%85%89%E8%B0%B1%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%8A%E7%9A%84%E6%98%A0%E5%B0%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -224,7 +331,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-28 21:22:27" itemprop="dateModified" datetime="2021-07-28T21:22:27+08:00">2021-07-28</time>
+        <time title="Modified: 2021-07-28 22:09:28" itemprop="dateModified" datetime="2021-07-28T22:09:28+08:00">2021-07-28</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">

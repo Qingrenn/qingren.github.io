@@ -20,28 +20,31 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qingrenn.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="正则表达式1 元字符 *：任意长度的字符串  ?：长度为1的任意字符  .：匹配除换行符以外的任意字符  \w：匹配字母或数字或下划线或汉字  \s：匹配任意的空白符  \d：匹配数字  \b：匹配单词的开始或结束  ^：匹配字符串的开始  $：匹配字符串的结束 反意 \W：匹配任意不是字母，数字，下划线，汉字的字符  \S：匹配任意不是空白符的字符  \D：匹配任意非数字的字符  \B：匹配不是">
+<meta name="description" content="Deep Convolutional Neural Networks for Hyperspectral Image Classification据本文提及，这是第一份利用CNN来对高光谱图像进行分类的工作，作者在LeNet-5的基础上，对其进行结构调整使之适合HSI的分类任务。 相关工作在此之前，作者提到的HSI的相关工作主要有以下部分，主要提及的还是CNN在图像处理领域的进展，感觉这个时段DL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式笔记">
-<meta property="og:url" content="https://qingrenn.github.io/2021/07/21/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Deep Convolutional Neural Networks for Hyperspectral Image Classification">
+<meta property="og:url" content="https://qingrenn.github.io/2021/07/29/Deep%20Convolutional%20Neural%20Networks%20for%20Hyperspectral%20Image%20Classification/index.html">
 <meta property="og:site_name" content="Qingren&#39;s Blog">
-<meta property="og:description" content="正则表达式1 元字符 *：任意长度的字符串  ?：长度为1的任意字符  .：匹配除换行符以外的任意字符  \w：匹配字母或数字或下划线或汉字  \s：匹配任意的空白符  \d：匹配数字  \b：匹配单词的开始或结束  ^：匹配字符串的开始  $：匹配字符串的结束 反意 \W：匹配任意不是字母，数字，下划线，汉字的字符  \S：匹配任意不是空白符的字符  \D：匹配任意非数字的字符  \B：匹配不是">
+<meta property="og:description" content="Deep Convolutional Neural Networks for Hyperspectral Image Classification据本文提及，这是第一份利用CNN来对高光谱图像进行分类的工作，作者在LeNet-5的基础上，对其进行结构调整使之适合HSI的分类任务。 相关工作在此之前，作者提到的HSI的相关工作主要有以下部分，主要提及的还是CNN在图像处理领域的进展，感觉这个时段DL">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-07-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-21T03:22:40.105Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/D9EQ6C.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/nFUEOR.png">
+<meta property="article:published_time" content="2021-07-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-29T15:29:31.058Z">
 <meta property="article:author" content="Qingren">
 <meta property="article:tag" content="未完待续">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/D9EQ6C.png">
 
 
-<link rel="canonical" href="https://qingrenn.github.io/2021/07/21/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="https://qingrenn.github.io/2021/07/29/Deep%20Convolutional%20Neural%20Networks%20for%20Hyperspectral%20Image%20Classification/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://qingrenn.github.io/2021/07/21/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0/","path":"2021/07/21/正则表达式笔记/","title":"正则表达式笔记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://qingrenn.github.io/2021/07/29/Deep%20Convolutional%20Neural%20Networks%20for%20Hyperspectral%20Image%20Classification/","path":"2021/07/29/Deep Convolutional Neural Networks for Hyperspectral Image Classification/","title":"Deep Convolutional Neural Networks for Hyperspectral Image Classification"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>正则表达式笔记 | Qingren's Blog</title>
+<title>Deep Convolutional Neural Networks for Hyperspectral Image Classification | Qingren's Blog</title>
   
 
 
@@ -120,7 +123,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%85%83%E5%AD%97%E7%AC%A6"><span class="nav-number">1.1.</span> <span class="nav-text">1 元字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E6%84%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">反意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%87%8D%E5%A4%8D"><span class="nav-number">1.2.</span> <span class="nav-text">2 重复</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-Convolutional-Neural-Networks-for-Hyperspectral-Image-Classification"><span class="nav-number">1.</span> <span class="nav-text">Deep Convolutional Neural Networks for Hyperspectral Image Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.2.</span> <span class="nav-text">模型介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.3.</span> <span class="nav-text">实验</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -198,7 +201,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/07/21/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/07/29/Deep%20Convolutional%20Neural%20Networks%20for%20Hyperspectral%20Image%20Classification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://github.com/Qingrenn/FigureBed/blob/master/avatar.gif?raw=true">
@@ -211,7 +214,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          正则表达式笔记
+          Deep Convolutional Neural Networks for Hyperspectral Image Classification
         </h1>
 
         <div class="post-meta-container">
@@ -223,7 +226,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-07-21 00:00:00 / Modified: 11:22:40" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
+      <time title="Created: 2021-07-29 00:00:00 / Modified: 23:29:31" itemprop="dateCreated datePublished" datetime="2021-07-29T00:00:00+08:00">2021-07-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -231,7 +234,11 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+          <a href="/categories/ML-DL/" itemprop="url" rel="index"><span itemprop="name">ML&DL</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/HSI/" itemprop="url" rel="index"><span itemprop="name">HSI</span></a>
         </span>
     </span>
 
@@ -245,44 +252,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h2 id="1-元字符"><a href="#1-元字符" class="headerlink" title="1 元字符"></a>1 元字符</h2><ul>
-<li><p>*：任意长度的字符串</p>
+        <h1 id="Deep-Convolutional-Neural-Networks-for-Hyperspectral-Image-Classification"><a href="#Deep-Convolutional-Neural-Networks-for-Hyperspectral-Image-Classification" class="headerlink" title="Deep Convolutional Neural Networks for Hyperspectral Image Classification"></a>Deep Convolutional Neural Networks for Hyperspectral Image Classification</h1><p>据本文提及，这是第一份利用CNN来对高光谱图像进行分类的工作，作者在LeNet-5的基础上，对其进行结构调整使之适合HSI的分类任务。</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>在此之前，作者提到的HSI的相关工作主要有以下部分，主要提及的还是CNN在图像处理领域的进展，感觉这个时段DL的方法确实还并未迁移至HSI上。</p>
+<ul>
+<li>SVM：<ul>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/4840429">“Spectral–Spatial Classification of Hyperspectral Imagery Based on Partitional Clustering Techniques,” in IEEE Transactions on Geoscience and Remote Sensing,  2009</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0924271610001140">Support vector machines in remote sensing: A review. 2011 </a></li>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/7018910">Spectral–Spatial Classification of Hyperspectral Data Based on Deep Belief Network. in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing. 2015</a></li>
+</ul>
 </li>
-<li><p>?：长度为1的任意字符</p>
+<li>Semi-supervised：<ul>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/5411821">Semisupervised Neural Networks for Efficient Hyperspectral Image Classificationn IEEE Transactions on Geoscience and Remote Sensing, 2010</a></li>
+</ul>
 </li>
-<li><p>.：匹配除换行符以外的任意字符</p>
-</li>
-<li><p>\w：匹配字母或数字或下划线或汉字</p>
-</li>
-<li><p>\s：匹配任意的空白符</p>
-</li>
-<li><p>\d：匹配数字</p>
-</li>
-<li><p>\b：匹配单词的开始或结束</p>
-</li>
-<li><p>^：匹配字符串的开始</p>
-</li>
-<li><p>$：匹配字符串的结束</p>
-<h3 id="反意"><a href="#反意" class="headerlink" title="反意"></a>反意</h3></li>
-<li><p>\W：匹配任意不是字母，数字，下划线，汉字的字符</p>
-</li>
-<li><p>\S：匹配任意不是空白符的字符</p>
-</li>
-<li><p>\D：匹配任意非数字的字符</p>
-</li>
-<li><p>\B：匹配不是单词开头或结束的位置</p>
-</li>
-<li><p><sup><a href="#fn_x" id="reffn_x">x</a></sup>：匹配除了x以外的任意字符</p>
+<li>SAEs：<ul>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/6844831">Deep Learning-Based Classification of Hyperspectral Data. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing. 2014</a></li>
+</ul>
 </li>
 </ul>
-<h2 id="2-重复"><a href="#2-重复" class="headerlink" title="2 重复"></a>2 重复</h2><ul>
-<li>*：重复零次或更多次</li>
-<li>+：重复一次或更多次</li>
-<li>?：重复零次或一次</li>
-<li>{n}：重复n次</li>
-<li>{n,}：重复n次或更多次</li>
-<li>{n,m}：重复n到m次</li>
-</ul>
+<h2 id="模型介绍"><a href="#模型介绍" class="headerlink" title="模型介绍"></a>模型介绍</h2><center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/D9EQ6C.png"></center>
+
+<p>模型的输入为某一个像素的谱向量长度为$n_1$，经过$20 \times k_1 \times 1$的卷积核，得到C1层的特征图，尺寸为$20 \times n_2 \times 1$。</p>
+<p>其中$n_2 = (n_1 - k_1)/1 + 1$。</p>
+<p>从C1至M2是最大池化操作，池化核为$k_2 \times 1$，得到的M2的特征图尺寸为$20 \times n_3 \times 1$。</p>
+<p>其中$n_3 = n_2/k_2$。</p>
+<p>然后是一层全连接层F3，并再接一层全连接作为输出。</p>
+<p>任务为多分类任务，作者使用的损失函数为交叉熵损 $J(\theta) = -\frac{1}{m} \sum \limits_{i=1}^{m} \sum \limits_{j=1}^{n_5} 1\{j=Y^{(i)}\}\log{(y_j^{(i)})}$。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/nFUEOR.png"></center>
+
+<p>从可视化的结果上来说，分类效果相较SVM并不明显。不过给我感觉到，HSI图像的分类是逐像素进行分类的，区别于我们常规的图像分类。个人认为常规的图像分类是主要是根据整张图像的语义信息进行分类，但是HSI图像的分类任务是在一个像素上进行的，仅仅需要对一个谱向量进行分类。</p>
+<p>作者在文中也有提到，本模型的结构和在语音识别中应用CNN处理频域信号的模型有相似之处，因为处理的数据都是一维的。</p>
 
     </div>
 
@@ -299,14 +298,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/07/21/C++%E7%AC%94%E8%AE%B0/" rel="prev" title="C++笔记">
-                  <i class="fa fa-chevron-left"></i> C++笔记
+                <a href="/2021/07/27/%E5%B8%B8%E8%A7%84CV%E4%BB%BB%E5%8A%A1%E5%9C%A8%E9%AB%98%E5%85%89%E8%B0%B1%E4%B8%8E%E5%A4%9A%E5%85%89%E8%B0%B1%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%8A%E7%9A%84%E6%98%A0%E5%B0%84/" rel="prev" title="高光谱图像处理的深度学习方法">
+                  <i class="fa fa-chevron-left"></i> 高光谱图像处理的深度学习方法
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/07/21/PCA/" rel="next" title="对于PCA的理解">
-                  对于PCA的理解 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
