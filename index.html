@@ -220,7 +220,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-08-20 17:20:00 / 修改时间：17:41:10" itemprop="dateCreated datePublished" datetime="2021-08-20T17:20:00+08:00">2021-08-20</time>
+      <time title="创建时间：2021-08-20 17:20:00 / 修改时间：18:09:29" itemprop="dateCreated datePublished" datetime="2021-08-20T17:20:00+08:00">2021-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -249,7 +249,7 @@
 <p>如下图输入一组向量$A = \{a^1, a^2, a^3, a^4\}$，对应输出长度相同的一组向量$B = \{b^1, b^2, b^3, b^4\}$。在输出一组向量$B$时，向量$a^1$对应的输出$b^1$是耦合了所有的输入向量的信息得到的，同理B中的每个向量也都耦合了输入的所有信息。</p>
 <p>参考这篇笔记[<a target="_blank" rel="noopener" href="https://www.pianshen.com/article/30651307137/">链接</a>]，便于理解self-attention的并行化相对于RNN和平行CNN的优势。</p>
 <p>  self-attention是如何耦合所有输入的信息，得到输出$b^1$呢？如下图所示，其中 $q^i = W^q a^i,~k^i = W^k a^i,~v^i = W^v a^i$。通过转移矩阵$W^q,~W^k,~W^v$对每个向量$a^i$都可以得到attention机制的三个基本输出query，key和value。在我的另一篇对attention综述的总结中介绍了attention的统一结构[<a href="https://qingrenn.github.io/2021/08/07/A%20review%20on%20the%20attention%20mechanism%20of%20deep%20learning/#more">链接</a>]，首先是通过合适的Score Function融合key和query的信息得到Energy score，再经过例如Softmax一类的分布函数得到对应value的权重$\alpha$。</p>
-<center><img src=https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/r6ROFa.png width=50%><center>
+<center><img src=https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/r6ROFa.png width=50%></center>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/08/20/Attention%20is%20all%20you%20need/#more" rel="contents">
