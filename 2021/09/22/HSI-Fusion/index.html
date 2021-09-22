@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qingrenn.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="SSR-NET[链接]     主要分为三个部分：  Cross-Mode Message Inserting   CMMI的主要目的是产生一个超多光谱的图像，融合公式如下，Y（HR-MSI），X（LR-HSI）。 $Z_{pre}(k)&#x3D;\left\{ \begin{aligned} Y(k)&amp;,~if ~ k \in \{s_1,\dots,s_l\} \\ X(k)&amp;\upa">
+<meta name="description" content="SSR-NET[链接] 2020 高光谱&amp;多光谱     主要分为三个部分：  Cross-Mode Message Inserting   CMMI的主要目的是产生一个超多光谱的图像，融合公式如下，Y（HR-MSI），X（LR-HSI）。 $Z_{pre}(k)&#x3D;\left\{ \begin{aligned} Y(k)&amp;,~if ~ k \in \{s_1,\dots,s_l\}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HSI-Fusion">
-<meta property="og:url" content="https://qingrenn.github.io/2021/09/03/HSI-Fusion/index.html">
+<meta property="og:title" content="HSI&#x2F;MSI Fusion">
+<meta property="og:url" content="https://qingrenn.github.io/2021/09/22/HSI-Fusion/index.html">
 <meta property="og:site_name" content="Qingren&#39;s Blog">
-<meta property="og:description" content="SSR-NET[链接]     主要分为三个部分：  Cross-Mode Message Inserting   CMMI的主要目的是产生一个超多光谱的图像，融合公式如下，Y（HR-MSI），X（LR-HSI）。 $Z_{pre}(k)&#x3D;\left\{ \begin{aligned} Y(k)&amp;,~if ~ k \in \{s_1,\dots,s_l\} \\ X(k)&amp;\upa">
+<meta property="og:description" content="SSR-NET[链接] 2020 高光谱&amp;多光谱     主要分为三个部分：  Cross-Mode Message Inserting   CMMI的主要目的是产生一个超多光谱的图像，融合公式如下，Y（HR-MSI），X（LR-HSI）。 $Z_{pre}(k)&#x3D;\left\{ \begin{aligned} Y(k)&amp;,~if ~ k \in \{s_1,\dots,s_l\}">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/S6PhY1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/bsKtkZ.png">
@@ -36,23 +36,35 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/GqW1it.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/dGcWFu.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/kjs8eT.png">
-<meta property="article:published_time" content="2021-09-03T13:32:00.000Z">
-<meta property="article:modified_time" content="2021-09-03T13:35:59.171Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/ERtk7j.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/6984gd.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/w17U3Q.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/cWAnKZ.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/8YPP64.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/Q28gVD.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/x6H4Uo.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/iISlu8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/xdrCKP.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/EkqrC5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/4BNnvW.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/iKnbQx.png">
+<meta property="article:published_time" content="2021-09-22T03:29:30.000Z">
+<meta property="article:modified_time" content="2021-09-22T03:29:52.196Z">
 <meta property="article:author" content="Qingren">
 <meta property="article:tag" content="深度学习">
-<meta property="article:tag" content="HSI">
+<meta property="article:tag" content="高光谱图像融合">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/S6PhY1.png">
 
 
-<link rel="canonical" href="https://qingrenn.github.io/2021/09/03/HSI-Fusion/">
+<link rel="canonical" href="https://qingrenn.github.io/2021/09/22/HSI-Fusion/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qingrenn.github.io/2021/09/03/HSI-Fusion/","path":"2021/09/03/HSI-Fusion/","title":"HSI-Fusion"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qingrenn.github.io/2021/09/22/HSI-Fusion/","path":"2021/09/22/HSI-Fusion/","title":"HSI/MSI Fusion"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>HSI-Fusion | Qingren's Blog</title>
+<title>HSI/MSI Fusion | Qingren's Blog</title>
   
 
 
@@ -131,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSR-NET"><span class="nav-number">1.</span> <span class="nav-text">SSR-NET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HAM-MFN"><span class="nav-number">2.</span> <span class="nav-text">HAM-MFN</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSR-NET"><span class="nav-number">1.</span> <span class="nav-text">SSR-NET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HAM-MFN"><span class="nav-number">2.</span> <span class="nav-text">HAM-MFN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MHF-Net"><span class="nav-number">3.</span> <span class="nav-text">MHF-Net</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MSDCNN"><span class="nav-number">4.</span> <span class="nav-text">MSDCNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSIFNN"><span class="nav-number">5.</span> <span class="nav-text">RSIFNN</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -211,7 +223,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/09/03/HSI-Fusion/">
+    <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/09/22/HSI-Fusion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://github.com/Qingrenn/FigureBed/blob/master/avatar.gif?raw=true">
@@ -224,7 +236,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          HSI-Fusion
+          HSI/MSI Fusion
         </h1>
 
         <div class="post-meta-container">
@@ -236,7 +248,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-09-03 21:32:00 / 修改时间：21:35:59" itemprop="dateCreated datePublished" datetime="2021-09-03T21:32:00+08:00">2021-09-03</time>
+      <time title="创建时间：2021-09-22 11:29:30 / 修改时间：11:29:52" itemprop="dateCreated datePublished" datetime="2021-09-22T11:29:30+08:00">2021-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -258,7 +270,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="SSR-NET"><a href="#SSR-NET" class="headerlink" title="SSR-NET"></a>SSR-NET</h2><p>[<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9186332">链接</a>]</p>
+        <h2 id="SSR-NET"><a href="#SSR-NET" class="headerlink" title="SSR-NET"></a>SSR-NET</h2><p>[<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9186332">链接</a>] 2020 高光谱&amp;多光谱</p>
 <center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/S6PhY1.png" width=60%></center>
 
 <center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/bsKtkZ.png" width=60%></center>
@@ -280,7 +292,7 @@
 <li>Spectral Reconstruction Network</li>
 </ol>
 <p>$Z_{spec} = Z_{spat} + Conv_{spec}(Z_{spec})$</p>
-<p>同样，为了让模型关注谱的恢复，作者提出了spectral edge loss。该loss实际上是对图像在谱方向对的一阶导进行监督。<br><span id="more"></span></p>
+<p>同样，为了让模型关注谱的恢复，作者提出了spectral edge loss。该loss实际上是对图像在谱方向对的一阶导进行监督。</p>
 <table>
   <tr>
     <th rowspan=2><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/c3DJCu.png"></th>
@@ -291,8 +303,8 @@
   </tr>
 </table>
 
-<p>最后模型的损失由三部分组成，spatial edge loss，spectral edge loss和fusion loss。</p>
-<h2 id="HAM-MFN"><a href="#HAM-MFN" class="headerlink" title="HAM-MFN"></a>HAM-MFN</h2><p>[<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/8972602">链接</a>]</p>
+<p>最后模型的损失由三部分组成，spatial edge loss，spectral edge loss和fusion loss。<br><span id="more"></span></p>
+<h2 id="HAM-MFN"><a href="#HAM-MFN" class="headerlink" title="HAM-MFN"></a>HAM-MFN</h2><p>[<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/8972602">链接</a>] 2020 高光谱&amp;多光谱</p>
 <center><img src=https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/x67TFm.png width=80%></center>
 
 <center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/4lW0iu.png" width=80%></center>
@@ -319,8 +331,68 @@
   </tr>
 </table>
 
+<h2 id="MHF-Net"><a href="#MHF-Net" class="headerlink" title="MHF-Net"></a>MHF-Net</h2><p>[<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9165231">链接</a>] 2020 高光谱&amp;多光谱</p>
+<p><strong>作者首先引入了一组定理建立多光谱图像与GT的关系：</strong></p>
+<table>
+  <tr>
+    <td><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/ERtk7j.png"></td>
+    <td rowspan=2><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/6984gd.png"></td>
+  </tr>
+  <tr>
+    <td><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/w17U3Q.png"></th>
+  </tr>
+</table>
 
+<p>(1)对于高分辨率高光谱的图像（Ground Truth）$X$ 和高分辨率的多光谱图像$\tilde{Y}$之间存在如下关系：</p>
+<p>$\tilde{Y} = XR$</p>
+<p>(2)这一步不是很能理解，如果使用$\tilde{Y}$表示$X$的话，则需要引入一个残差量$\hat{Y}$:</p>
+<p>$X = \tilde{Y}A + \hat{Y}B$</p>
+<p>(3)而理论上的高分辨率的多光谱图像$\tilde{Y}$与实际的样本$Y$是存在差异的，这些差异是图像采集过程中的噪声$N_y$带来的：</p>
+<p>$\tilde{Y} = Y - N_y$</p>
+<p>最终对$X$进行表示：</p>
+<p>$X=YA+\hat{Y}B+N_x,~N_x=-N_yA$</p>
+<center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/cWAnKZ.png" height=400></center>
 
+<p><strong>然后作者又引入一组定理将高光谱图像引入上述关系中来，建立一个GT和LR-HSI、HR-MSI之间的关系：</strong></p>
+<p>(4)对于高分辨率高光谱的图像（Ground Truth）$X$ 和低分辨率的高光谱图像$\tilde{Z}$之间存在如下关系：</p>
+<p>$\tilde{Z} = CX$</p>
+<p>(5)基于上述第(2)步：</p>
+<p>$\tilde{Z}=C(\tilde{Y}A+\hat{Y}B)$</p>
+<p>(6)在引入噪声量，实际训练样本$Z$:</p>
+<p>$Z=C(YA+\hat{Y}B)+N,~ N=N_z-CN_yA$</p>
+<p>这样就以重建HR-HSI为渠道，建立了LR-HSI样本$Z$和HR-MSI样本$Y$之间的关系。</p>
+<center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/8YPP64.png" height=400></center>
+
+<p>最终作者设计了式(9)这样的一个损失，其中$f()$为正则项，并不使用先验知识来设计，而是通过网络学习得到。</p>
+<p>式(9)中仅仅$\hat{Y}$为变量，因此作者设计了一个迭代式(10)用于优化$\hat{Y}$。</p>
+<p>从(10)～(13)并不是很懂，但是作者最终得到一个迭代优化的式子(13)(14)。</p>
+<p>将(14)式展开成如下几个操作,并通过DL模型进行表达</p>
+<center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/Q28gVD.png" width=50%></center>
+
+<p>最后在模型的设计上，遵循上述的设计，如下图所示：</p>
+<center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/x6H4Uo.png" width=80%></center>
+
+<p>由图(a)可见，这个网络在训练中，一组样本，需要进行k次迭代训练，每次迭代都遵循式(14)的设计。</p>
+<p>在训练Loss的设计上，使用最终输出图像$\hat{X}$和GT$X$的L2、每次迭代输出图像$X^{(k)}$和GT$X$的L2以及每次迭代过程中生成的高光谱图像的误差$\varepsilon^{(k)}$这三项之和共同作为Loss。</p>
+<center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/iISlu8.png" width=50%></center>
+
+<h2 id="MSDCNN"><a href="#MSDCNN" class="headerlink" title="MSDCNN"></a>MSDCNN</h2><p>[<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/8281501">链接</a>] 2018 彩色图像和多光谱图像</p>
+<center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/xdrCKP.png" width=80%></center>
+
+<table>
+  <tr>
+    <th><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/EkqrC5.png"></th>
+    <th><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/4BNnvW.png"></th>
+  </tr>
+</table>
+
+<p>Muti-scale Muti-depth CNN</p>
+<p>总体来看，MSDCNN体现了一个<strong>多尺度</strong>，双分支的设计，并且引入了残差连接。在Deep分支，使用三种不同的卷积核融合图像，</p>
+<h2 id="RSIFNN"><a href="#RSIFNN" class="headerlink" title="RSIFNN"></a>RSIFNN</h2><p>[<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/8314460">链接</a>] 2018 彩色图像&amp;多光谱</p>
+<center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/iKnbQx.png" width=80%></center>
+
+<p>本文是将PAN图像和MSI进行融合。</p>
+<p>不同于直接将PAN图像作为MSI的一个通道直接覆盖在其上，然后进行处理的这种做法。本文设计了一个<strong>双分支</strong>的结构，分别处理PAN和MSI两种图像 。</p>
 
     </div>
 
@@ -331,7 +403,7 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
-              <a href="/tags/HSI/" rel="tag"># HSI</a>
+              <a href="/tags/%E9%AB%98%E5%85%89%E8%B0%B1%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88/" rel="tag"># 高光谱图像融合</a>
           </div>
 
         
