@@ -133,7 +133,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -146,7 +146,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -186,6 +186,161 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/09/27/DETR/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://github.com/Qingrenn/FigureBed/blob/master/avatar.gif?raw=true">
+      <meta itemprop="name" content="Qingren">
+      <meta itemprop="description" content="The palest ink is better than the best memory.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qingren's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/27/DETR/" class="post-title-link" itemprop="url">DETR:End-to-End Object Detection with Transformers</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-09-27 00:00:00 / 修改时间：16:47:51" itemprop="dateCreated datePublished" datetime="2021-09-27T00:00:00+08:00">2021-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">学习总结</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="DETR"><a href="#DETR" class="headerlink" title="DETR"></a>DETR</h2><p>End-to-End Object Detection with Transformers [<a target="_blank" rel="noopener" href="https://github.com/facebookresearch/detr">源码</a>] [<a target="_blank" rel="noopener" href="https://ai.facebook.com/research/publications/end-to-end-object-detection-with-transformers">论文</a>]</p>
+<p>DETR是一种基于Transformers的端到端的目标检测模型。</p>
+<p>简化了Faster-RCNN、YOLO系列使用proposal-classifier的目标识别流程。</p>
+<p>DETR的模型结构非常简单，下图把DETR的所有<strong>关键部分</strong>全部体现了出来：</p>
+<ul>
+<li>Backbone</li>
+<li>Embedding(positional_embeding, query_embeding)</li>
+<li>Encoder</li>
+<li>Decoder</li>
+<li>Feed Forward Network</li>
+</ul>
+<center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/截屏2021-09-26 下午8.50.50.png"></center>
+
+<p>先对模型的前馈流程，以及各个模块的详细组成进行简单介绍。</p>
+<p>首先，在图像输入网络前，是需要对其进行尺寸调整的。因为在transformer推理的过程中，需要batch中所有样本的序列长度都一样，所以要把batch的所有图像调整到统一的尺寸。这里会对图像做padding，然后会通过一个mask来记录调整后图像中被padding的位置。mask尺寸为$(bs,H,W)$。</p>
+<h3 id="1-Backbone"><a href="#1-Backbone" class="headerlink" title="1. Backbone"></a>1. Backbone</h3><p>输入一组图像，张量维度为$(bs,C,H,W)$。</p>
+<p>Backbone使用的是Resnet，在经过特征提取后第四个block的输出，分辨率下降16倍，通道数为2048。</p>
+<p>将Backbone的输出记为$(bs,2048,h,w)$。</p>
+<h3 id="2-Positional-Encoding"><a href="#2-Positional-Encoding" class="headerlink" title="2.Positional Encoding"></a>2.Positional Encoding</h3><p>源码中提供了两种Positional Encoding的方式，这也是目前两种主流的编码方式。</p>
+<p>一种使用正余弦编码（相对位置编码），一种可学习的编码方式（绝对位置编码），两种编码方式在最后的结果中并无太大差异，接下来分别对其进行介绍。</p>
+<h4 id="2-1-Sinusoidal-Position-Encoding"><a href="#2-1-Sinusoidal-Position-Encoding" class="headerlink" title="2.1 Sinusoidal Position Encoding"></a>2.1 Sinusoidal Position Encoding</h4><p>在介绍二维的正余弦编码前，可以先回顾一下Attention is all you need 中的一维的正余弦编码。</p>
+<p>其编码规则是这样的：</p>
+<p>$PE_(pos,2i)=sin(pos/10000^{2i/d_{model}})$</p>
+<p>$PE_(pos,2i+1)=cos(pos/10000^{2i/d_{model}})$</p>
+<p>其中$pos$表示单词所处句子中的第$pos$个位置，$d_{model}$表示词向量的维度，$i$表示这个词向量的第i维。示例可见上一篇<a href="https://qingrenn.github.io/2021/08/20/Attention%20is%20all%20you%20need/#more">博客</a></p>
+<p>而对于二维的正余弦编码，实际上就是单独对x方向，和单独对y方向编码，然后concat。</p>
+<p>接下来通过代码详细解读一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建位置编码器，关键参数 N_steps = hidden_dim // 2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_position_encoding</span>(<span class="params">args</span>):</span></span><br><span class="line">    N_steps = args.hidden_dim // <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> args.position_embedding <span class="keyword">in</span> (<span class="string">&#x27;v2&#x27;</span>, <span class="string">&#x27;sine&#x27;</span>):</span><br><span class="line">        <span class="comment"># TODO find a better way of exposing other arguments</span></span><br><span class="line">        position_embedding = PositionEmbeddingSine(N_steps, normalize=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">elif</span> args.position_embedding <span class="keyword">in</span> (<span class="string">&#x27;v3&#x27;</span>, <span class="string">&#x27;learned&#x27;</span>):</span><br><span class="line">        position_embedding = PositionEmbeddingLearned(N_steps)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">f&quot;not supported <span class="subst">&#123;args.position_embedding&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> position_embedding</span><br></pre></td></tr></table></figure>
+<p>有一个关键参数<code>N_steps = hidden_dim // 2</code>，实际上hidden_dim就是输入Transformer中的向量的长度。</p>
+<p>因为是将对x和对y方向编码的结果concat到一起，所以这里N_steps就为hidden_dim的一半。</p>
+<p>接下来看二维的正余弦编码究竟是如何做的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, tensor_list: NestedTensor</span>):</span></span><br><span class="line">        x = tensor_list.tensors</span><br><span class="line">        mask = tensor_list.mask <span class="comment"># (bs, h, w)</span></span><br><span class="line">        <span class="keyword">assert</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br><span class="line">        not_mask = ~mask</span><br><span class="line">        y_embed = not_mask.cumsum(<span class="number">1</span>, dtype=torch.float32) <span class="comment"># 在维度1的方向上累加</span></span><br><span class="line">        x_embed = not_mask.cumsum(<span class="number">2</span>, dtype=torch.float32) <span class="comment"># 在维度2的方向上累加</span></span><br><span class="line">        <span class="keyword">if</span> self.normalize: <span class="comment"># 归一化</span></span><br><span class="line">            eps = <span class="number">1e-6</span></span><br><span class="line">            y_embed = y_embed / (y_embed[:, -<span class="number">1</span>:, :] + eps) * self.scale</span><br><span class="line">            x_embed = x_embed / (x_embed[:, :, -<span class="number">1</span>:] + eps) * self.scale</span><br><span class="line">				</span><br><span class="line">        <span class="comment"># num_pos_feats = N_steps</span></span><br><span class="line">        dim_t = torch.arange(self.num_pos_feats, dtype=torch.float32, device=x.device) </span><br><span class="line">        dim_t = self.temperature ** (<span class="number">2</span> * (dim_t // <span class="number">2</span>) / self.num_pos_feats) <span class="comment"># (N_steps, )</span></span><br><span class="line"></span><br><span class="line">        pos_x = x_embed[:, :, :, <span class="literal">None</span>] / dim_t </span><br><span class="line">        pos_y = y_embed[:, :, :, <span class="literal">None</span>] / dim_t <span class="comment"># (bs, h, w, N_steps)</span></span><br><span class="line">        pos_x = torch.stack((pos_x[:, :, :, <span class="number">0</span>::<span class="number">2</span>].sin(), pos_x[:, :, :, <span class="number">1</span>::<span class="number">2</span>].cos()), dim=<span class="number">4</span>).flatten(<span class="number">3</span>) <span class="comment"># (bs, h, w, N_steps)</span></span><br><span class="line">        pos_y = torch.stack((pos_y[:, :, :, <span class="number">0</span>::<span class="number">2</span>].sin(), pos_y[:, :, :, <span class="number">1</span>::<span class="number">2</span>].cos()), dim=<span class="number">4</span>).flatten(<span class="number">3</span>) <span class="comment"># (bs, h, w, N_steps)</span></span><br><span class="line">        pos = torch.cat((pos_y, pos_x), dim=<span class="number">3</span>).permute(<span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>) <span class="comment"># (bs, h, w, 2*N_steps)</span></span><br><span class="line">        <span class="keyword">return</span> pos</span><br></pre></td></tr></table></figure>
+<p>直接上图解：</p>
+<p>mask $(bs, h , w)$ 中1代表图像padding的位置，0代表的是未经过padding的位置。首先取反的到not_mask，然后在h方向上进行累加，可以的到y_embed，在w方向上进行累加得到x_embed。</p>
+<center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/image-20210927103050006.png" width=50%></center>
+
+<p>然后进行归一化（表格中的元素还要再乘以scale，scale为$2\pi$）：</p>
+<center><img src=/Users/qingren/Library/Application%20Support/typora-user-images/image-20210927103816448.png width=50%></center>
+
+<p>再生成一组dim_t，长度为N_steps。</p>
+<p>以N_steps为64为例：$\{10000^{0/64},10000^{0/64},10000^{2/64},10000^{2/64},\dots,10000^{62/64},10000^{62/64}\}$</p>
+<p>再将embed$(bs,h,w,1)$除上dim_t，得到pos_x，pos_y($bs, h, w, N_{steps}$)，再进行正弦，余弦操作。</p>
+<p>假设N_steps=64，以上图的情况为例，此时pos_y中第3行任意一列对应的位置编码为：</p>
+<p>$\{sin(\frac{2}{3}10000^{0/64}), cos(\frac{2}{3}10000^{0/64}), sin(\frac{2}{3}10000^{2/64}), cos(\frac{2}{3}10000^{0/64}), \dots, sin(\frac{2}{3}10000^{62/64}),cos(\frac{2}{3}10000^{62/64})\}$</p>
+<p>此时pos_x中第3列的第2，3，4行对应的位置编码为：</p>
+<p>$\{sin(\frac{3}{5}10000^{0/64}), cos(\frac{3}{5}10000^{0/64}), sin(\frac{3}{5}10000^{2/64}), cos(\frac{3}{5}10000^{0/64}), \dots, sin(\frac{3}{5}10000^{62/64}),cos(\frac{3}{5}10000^{62/64})\}$</p>
+<p>最后对pos_x和pos_y在第4维进行concat操作得到$(bs, h, w, 2N_{steps})$。</p>
+<p>最后调整通道方便下一步操作$（bs, 2N_{steps},h,w）$</p>
+<h4 id="2-2-Learned-Positional-Embedding"><a href="#2-2-Learned-Positional-Embedding" class="headerlink" title="2.2 Learned Positional Embedding"></a>2.2 Learned Positional Embedding</h4><center><img src=https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/image-20210927111043033.png width=30%></center>
+
+<p>可学习的位置编码相对简单。</p>
+<p>图像x尺寸调整后为$(c, h ,w)$，那么直接使用<code>nn.Embedding(50, num_pos_features)</code>对行和列进行随机初始化。</p>
+<p>其中<code>num_pos_features = N_steps = hidden_dim // 2</code>。</p>
+<p>x_emb：$(w, num_pos_features)$</p>
+<p>y_emb：$(h,num_pos_features)$</p>
+<p>然后如上图所示，x_emb向h方向复制（红色），y_emb向w方向复制（绿色），得到两个尺寸为$(h, w, num_pos_features)$的张量，再进行concat。</p>
+<p>最终得到$(h, w, 2num_pos_features)$。</p>
+<p>然后调整通道，方便下一步操作：$(bs, 2num_pos_features,h,w)$。</p>
+<h3 id="3-Transformer"><a href="#3-Transformer" class="headerlink" title="3 Transformer"></a>3 Transformer</h3><center><img src="/Users/qingren/Library/Application%20Support/typora-user-images/image-20210927113139183.png" width=50%></center>
+
+<p>在数据流向Transformer前， 我们已经有了三份数据：</p>
+<ul>
+<li>经过backbone提取的特征图：$(bs, c, h, w)$</li>
+<li>位置编码：$(bs, hidden_dim, h, w),~hidden_dim=d_model$</li>
+<li>图像对应的mask：$(h, w)$</li>
+</ul>
+<p>还要第四份数据：query_embeding，作为Decoder的输入，这一步放在Decoder介绍。</p>
+<p>这里Transformer的整体结构与Attention is all you need中非常相似，这里主要关注Decoder的输入。</p>
+<p><strong>前处理</strong>：</p>
+<p>Transformer的输入与卷积操作不同，需要对数据的格式进行一些变换。</p>
+<p>首先为了降低计算量，减少特征图的通道数：$(bs, 2048, h, w) \to (bs, d_model, h, w) \to (hw, bs, d_model)$</p>
+<p>位置编码则也要调整格式：$(bs,d_model,h,w) \to (hw, bs, d_model)$</p>
+<p>mask也进行调整：$(h,w)\to(hw, )$</p>
+<h4 id="3-1-Encoder-Layer"><a href="#3-1-Encoder-Layer" class="headerlink" title="3.1 Encoder Layer"></a>3.1 Encoder Layer</h4><center><img src="https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/image-20210927113529342.png" width=80%></center>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_post</span>(<span class="params">self,</span></span></span><br><span class="line"><span class="params"><span class="function">                     src,</span></span></span><br><span class="line"><span class="params"><span class="function">                     src_mask: <span class="type">Optional</span>[Tensor] = <span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                     src_key_padding_mask: <span class="type">Optional</span>[Tensor] = <span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                     pos: <span class="type">Optional</span>[Tensor] = <span class="literal">None</span></span>):</span></span><br><span class="line">        q = k = self.with_pos_embed(src, pos) <span class="comment"># q = k = src + pos_embed </span></span><br><span class="line">        src2 = self.self_attn(q, k, value=src, attn_mask=src_mask,</span><br><span class="line">                              key_padding_mask=src_key_padding_mask)[<span class="number">0</span>]</span><br><span class="line">        src = src + self.dropout1(src2)</span><br><span class="line">        src = self.norm1(src)</span><br><span class="line">        <span class="comment"># Feed forward</span></span><br><span class="line">        src2 = self.linear2(self.dropout(self.activation(self.linear1(src))))</span><br><span class="line">        src = src + self.dropout2(src2)</span><br><span class="line">        src = self.norm2(src)</span><br><span class="line">        <span class="keyword">return</span> src <span class="comment"># (hw, bs , d_model)</span></span><br></pre></td></tr></table></figure>
+<p>Encoder输入的是原图的特征图，输出的尺寸仍然保持不变，相当于每个像素的编码经过self-attention后都引入了其他像素点的信息，建立了原图区域之间的联系。</p>
+<h4 id="3-2-Decoder-Layer"><a href="#3-2-Decoder-Layer" class="headerlink" title="3.2 Decoder Layer"></a>3.2 Decoder Layer</h4><center><img src=https://cdn.jsdelivr.net/gh/Qingrenn/FigureBed@master/uPic/image-20210927123919440.png width=80%></center>
+
+<p>Decoder第一层的输入是一个初始化的维度为$(num_queries,d_model), num_queries=100$的全零张量作为输入。</p>
+<p>然后再经过position_embeding，加上一个<strong>随初始化，可学习</strong>的query_embeding。再经过self-attention，再送入cross-attetion中作为query。</p>
+<p>这里通过解读Cross Attention的含义，在直觉上来解释query_embeding的作用。</p>
+<h3 id="4-FeedForward"><a href="#4-FeedForward" class="headerlink" title="4. FeedForward"></a>4. FeedForward</h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1052,99 +1207,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://qingrenn.github.io/2021/07/21/C++%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/Qingrenn/FigureBed/blob/master/avatar.gif?raw=true">
-      <meta itemprop="name" content="Qingren">
-      <meta itemprop="description" content="The palest ink is better than the best memory.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qingren's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/21/C++%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">C++笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 20:35:40" itemprop="dateModified" datetime="2021-08-02T20:35:40+08:00">2021-08-02</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="C-基础"><a href="#C-基础" class="headerlink" title="C++基础"></a>C++基础</h1><h2 id="1-指针"><a href="#1-指针" class="headerlink" title="1 指针"></a>1 指针</h2><h3 id="1-1空指针和野指针"><a href="#1-1空指针和野指针" class="headerlink" title="1.1空指针和野指针"></a>1.1空指针和野指针</h3><p><strong>空指针</strong>：指针变量指向内存中编号为0的空间的</p>
-<p>用途：初始化指针变量</p>
-<p>注意：空指针指向的内存是不可以访问的</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = null;<span class="comment">//空指针</span></span><br><span class="line">    *p = <span class="number">100</span>;</span><br><span class="line">    <span class="comment">//会引发异常，0~255之间内存空间为系统内存占用，不允许访问</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>野指针</strong>:指针指向非法的内存空间</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">0x1100</span>;<span class="comment">//野指针</span></span><br><span class="line">    std::cout &lt;&lt; *p &lt;&lt; std::endl;</span><br><span class="line">    <span class="comment">//访问野指针报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>总结：空指针和野指针都不是我们申请的空间，因此不要访问。<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/21/C++%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 </div>
   </main>
