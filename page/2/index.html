@@ -226,7 +226,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 20:35:40" itemprop="dateModified" datetime="2021-08-02T20:35:40+08:00">2021-08-02</time>
+        <time title="修改时间：2021-09-29 16:21:27" itemprop="dateModified" datetime="2021-09-29T16:21:27+08:00">2021-09-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,7 +254,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = null;<span class="comment">//空指针</span></span><br><span class="line">    *p = <span class="number">100</span>;</span><br><span class="line">    <span class="comment">//会引发异常，0~255之间内存空间为系统内存占用，不允许访问</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>野指针</strong>:指针指向非法的内存空间</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">0x1100</span>;<span class="comment">//野指针</span></span><br><span class="line">    std::cout &lt;&lt; *p &lt;&lt; std::endl;</span><br><span class="line">    <span class="comment">//访问野指针报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>总结：空指针和野指针都不是我们申请的空间，因此不要访问。<br>
+<p>总结：空指针和野指针都不是我们申请的空间，因此不要访问。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/07/21/C++%E7%AC%94%E8%AE%B0/#more" rel="contents">
